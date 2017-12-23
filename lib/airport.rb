@@ -10,12 +10,13 @@ class Airport
   end
     
   def land(plane)
+    fail 'Cannot land due to turbulent weather conditions' if @weather.stormy?
     @hangar << plane
     plane.land 
   end
   
   def takeoff(plane)
-    fail 'Cannot takeoff due to weather conditions' if @weather.stormy?
+    fail 'Cannot takeoff due to turbulent weather conditions' if @weather.stormy?
     plane.takeoff
   end
     

@@ -15,6 +15,11 @@ describe Airport do
       expect(airport.hangar).to include plane  
     end
     
+    it 'can prevent landing if weather is stormy' do 
+      allow(airport.weather).to receive(:stormy?).and_return true
+      expect { airport.land(plane) }.to raise_error 'Cannot land due to turbulent weather conditions'
+    end
+    
   end
   
   context '#takeoff' do 
@@ -32,7 +37,7 @@ describe Airport do
     
     it 'can prevent takeoff if weather is stormy' do 
       allow(airport.weather).to receive(:stormy?).and_return true
-      expect { airport.takeoff(plane) }.to raise_error 'Cannot takeoff due to weather conditions'
+      expect { airport.takeoff(plane) }.to raise_error 'Cannot takeoff due to turbulent weather conditions'
     end
     
   end

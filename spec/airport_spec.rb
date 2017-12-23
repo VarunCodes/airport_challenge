@@ -7,5 +7,11 @@ describe Airport do
     airport.land(plane)
     expect(plane.landed).to be true
   end
-    
+  
+  it 'can instruct a plane to takeoff' do 
+    airport.land(plane)
+    airport.takeoff(plane)
+    expect(plane.landed).to be false
+  end
+  
 end

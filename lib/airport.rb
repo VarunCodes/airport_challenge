@@ -2,10 +2,11 @@ require "./lib/plane"
 
 class Airport 
     
-  attr_accessor :hangar
+  attr_accessor :hangar, :weather
     
-  def initialize
+  def initialize(weather = Weather.new)
     @hangar = []
+    @weather = weather
   end
     
   def land(plane)
@@ -14,6 +15,7 @@ class Airport
   end
   
   def takeoff(plane)
+    fail 'Cannot takeoff due to weather conditions' if @weather.stormy?
     plane.takeoff
   end
     

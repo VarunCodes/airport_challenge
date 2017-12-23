@@ -30,6 +30,11 @@ describe Airport do
       expect(airport.hangar).not_to include plane
     end
     
+    it 'can prevent takeoff if weather is stormy' do 
+      allow(airport.weather).to receive(:stormy?).and_return true
+      expect { airport.takeoff(plane) }.to raise_error 'Cannot takeoff due to weather conditions'
+    end
+    
   end
   
 end
